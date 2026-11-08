@@ -24,7 +24,14 @@ header{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .panel[hidden]{display:none}
 .two{grid-template-columns:1fr 1fr}
 .three{grid-template-columns:1fr 1fr 1fr}
-.four{grid-template-columns:1.2fr 1.2fr 1fr .7fr}
+.four{grid-template-columns:1fr 1fr 1fr 1fr}
+.design{grid-template-columns:1.1fr 1fr 1fr}
+.design .tables{display:grid;grid-template-rows:1fr 1fr;gap:10px;min-height:0}
+.hero{grid-template-columns:1.6fr 1fr}
+.media{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr}
+.frame.fill img{width:100%;height:100%;object-fit:cover}
+.align.small{font-size:.74rem;padding:10px 12px}
+.align.small th,.align.small td{padding:5px 6px}
 .wide-right{grid-template-columns:1fr 1.4fr}
 .col{min-height:0;display:grid;grid-template-rows:1fr auto;gap:6px}
 .frame{min-height:0;background:var(--card);border-radius:10px;overflow:hidden;display:grid;place-items:center;box-shadow:0 20px 40px -24px rgba(0,0,0,.8)}
@@ -50,7 +57,7 @@ footer{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;m
 @media (max-width:640px){
   .slide{aspect-ratio:auto;min-height:100%}
   .stage{min-height:70vh}
-  .two,.three,.four,.wide-right{grid-template-columns:1fr}
+  .two,.three,.four,.wide-right,.design,.hero,.media{grid-template-columns:1fr;grid-template-rows:none}
   .tabs button{font-size:.74rem;padding:5px 9px}
   .cap{white-space:normal;font-size:.8rem}
   .arrow{display:none}
@@ -62,103 +69,87 @@ footer{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;m
   <header>
     <div class="brand"><i></i>WIPO Academy · blended course</div>
     <div class="tabs" role="tablist" aria-label="Design layers">
-      <button role="tab" id="t0" aria-selected="true" aria-controls="p0">Standards</button>
-      <button role="tab" id="t1" aria-selected="false" aria-controls="p1">Backwards design</button>
-      <button role="tab" id="t2" aria-selected="false" aria-controls="p2">Storyboard</button>
+      <button role="tab" id="t0" aria-selected="true" aria-controls="p0">The course</button>
+      <button role="tab" id="t1" aria-selected="false" aria-controls="p1">Standards</button>
+      <button role="tab" id="t2" aria-selected="false" aria-controls="p2">Design</button>
       <button role="tab" id="t3" aria-selected="false" aria-controls="p3">Media</button>
       <button role="tab" id="t4" aria-selected="false" aria-controls="p4">Accessibility</button>
       <button role="tab" id="t5" aria-selected="false" aria-controls="p5">Live sessions</button>
     </div>
   </header>
-
   <div class="stage">
-    <!-- Standards -->
-    <div class="panel three" id="p0" role="tabpanel" aria-labelledby="t0">
-      <div class="col"><div class="frame top"><img src="assets/guide-redaccion.png" alt="Spanish writing guide, summary page"></div><div class="lab"><b>Writing guide (Spanish).</b> Tone, register, inclusive language.</div></div>
-      <div class="col"><div class="frame top"><img src="assets/guide-editorial.png" alt="Spanish editorial guide, first page"></div><div class="lab"><b>Editorial guide.</b> Terminology, conventions, referencing.</div></div>
-      <div class="col"><div class="frame top"><img src="assets/rise-template-buttons.png" alt="Rise 360 template page with WIPO-styled buttons"></div><div class="lab"><b>Rise 360 template.</b> Reusable layouts and elements.</div></div>
+    <div class="panel hero" id="p0" role="tabpanel" aria-labelledby="t0">
+      <div class="col"><div class="frame fill"><img src="assets/mockup-desk.png" alt="Desk mockup showing Module 1 in Rise 360 on a monitor and tablet, with the three module learner guides printed"></div><div class="lab"><b>Three Rise 360 modules</b>, three learner guides, three live sessions.</div></div>
+      <div class="col"><div class="frame fill"><img src="assets/mockup-tablet.png" alt="Articulate 360 dashboard on a tablet listing the three modules and the final assessment"></div><div class="lab"><b>Three hours self-paced</b> plus 3.5 hours live, published as SCORM.</div></div>
     </div>
 
-    <!-- Backwards design -->
-    <div class="panel wide-right" id="p1" role="tabpanel" aria-labelledby="t1" hidden>
-      <div class="align">
-        <h4>UbD · transfer goal → outcome → evidence</h4>
+    <div class="panel three" id="p1" role="tabpanel" aria-labelledby="t1" hidden>
+      <div class="col"><div class="frame top"><img src="assets/guide-redaccion.png" alt="Spanish writing guide"></div><div class="lab"><b>Writing guide (Spanish).</b> Tone, register, inclusive language.</div></div>
+      <div class="col"><div class="frame top"><img src="assets/guide-editorial.png" alt="Spanish editorial guide"></div><div class="lab"><b>Editorial guide.</b> Terminology, conventions, referencing.</div></div>
+      <div class="col"><div class="frame"><img src="assets/rise-template-labels.png" alt="Rise 360 course labels customised into Spanish"></div><div class="lab"><b>Rise 360 template.</b> Spanish labels and reusable layouts for all modules.</div></div>
+    </div>
+
+    <div class="panel design" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+      <div class="tables"><div class="align small">
+        <h4>UbD · transfer goal → outcome → level</h4>
         <table>
           <tr><th>Transfer goal</th><th>Course outcome</th><th>Level</th></tr>
-          <tr><td>Recognise and address gender and intersectional bias in IP processes</td><td>Identify key gender biases, barriers and discriminatory practices in IP Offices</td><td><span class="lvl">Analyse</span></td></tr>
-          <tr><td>Develop and implement a Gender Action Plan for their office</td><td>Develop a Gender Action Plan aligned with institutional objectives</td><td><span class="lvl c">Create</span></td></tr>
-          <tr><td>Advocate for inclusive, data-driven decisions</td><td>Analyse the internal and external dimensions of gender mainstreaming</td><td><span class="lvl e">Evaluate</span></td></tr>
-          <tr><td>Use gender-sensitive indicators to monitor and report</td><td>Apply gender-sensitive indicators to monitor and evaluate equality measures</td><td><span class="lvl a">Apply</span></td></tr>
+          <tr><td>Recognise and address gender bias in IP processes</td><td>Identify key gender biases, barriers and discriminatory practices</td><td><span class="lvl">Analyse</span></td></tr>
+          <tr><td>Develop a Gender Action Plan for their office</td><td>Develop a GAP aligned with institutional objectives</td><td><span class="lvl c">Create</span></td></tr>
+          <tr><td>Advocate for data-driven decisions</td><td>Analyse internal and external dimensions of mainstreaming</td><td><span class="lvl e">Evaluate</span></td></tr>
+          <tr><td>Use gender-sensitive indicators</td><td>Apply indicators to monitor and evaluate equality measures</td><td><span class="lvl a">Apply</span></td></tr>
         </table>
       </div>
-      <div class="align">
+      <div class="align small">
         <h4>Module 2 · outcome → assessment evidence</h4>
         <table>
-          <tr><th>Intended outcome</th><th>Assessment</th><th>Type</th></tr>
-          <tr><td>Define gender mainstreaming</td><td>Auto-graded quiz and drag-and-drop definitions</td><td>Formative</td></tr>
-          <tr><td>Differentiate internal and external dimensions</td><td>Scenario classifying office actions as internal or external</td><td>Formative</td></tr>
-          <tr><td>Apply mainstreaming tools in office areas</td><td>Mini-case applying tools to one department (HR, examiners, outreach)</td><td>Performance</td></tr>
-          <tr><td>Apply across office functions</td><td>Zoom group exercise comparing departments; GAP continuation reflection</td><td>Transfer</td></tr>
-          <tr><td>All five outcomes</td><td>Final test: 10–15 items plus two short case scenarios</td><td>Summative</td></tr>
+          <tr><th>Outcome</th><th>Evidence</th><th>Type</th></tr>
+          <tr><td>Define gender mainstreaming</td><td>Auto-graded quiz, drag-and-drop definitions</td><td>Formative</td></tr>
+          <tr><td>Differentiate internal / external</td><td>Scenario classifying office actions</td><td>Formative</td></tr>
+          <tr><td>Apply tools in office areas</td><td>Mini-case on one department</td><td>Performance</td></tr>
+          <tr><td>Apply across functions</td><td>Zoom group exercise; GAP reflection</td><td>Transfer</td></tr>
+          <tr><td>All outcomes</td><td>Final test, items plus two case scenarios</td><td>Summative</td></tr>
         </table>
-      </div>
+      </div></div>
+      <div class="col"><div class="frame top"><img src="assets/sb-infographic-spec.png" alt="Storyboard page specifying an infographic with dev note, alt text, caption and file names"></div><div class="lab"><b>Storyboard.</b> Text, media, alt text and file names per page.</div></div>
+      <div class="col"><div class="frame"><img src="assets/rise-dual-page.png" alt="The built Rise 360 page for the same lesson"></div><div class="lab"><b>The built page.</b> Same lesson in Rise 360.</div></div>
     </div>
 
-    <!-- Storyboard -->
-    <div class="panel three" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
-      <div class="col"><div class="frame top"><img src="assets/sb-infographic-spec.png" alt="Storyboard page specifying an infographic with dev note, alt text, caption and file names"></div><div class="lab"><b>Infographic spec.</b> Dev note, alt text, caption, file names.</div></div>
-      
-      <div class="col"><div class="frame"><img src="assets/rise-dual-page.png" alt="The built Rise 360 page for the dual approach lesson, showing the infographic specified in the storyboard"></div><div class="lab"><b>The built page.</b> Same lesson in Rise 360, infographic in place.</div></div>
-      <div class="col"><div class="frame top"><img src="assets/sb-quiz-feedback.png" alt="Storyboard page with a knowledge-check question and feedback for each option"></div><div class="lab"><b>Knowledge check.</b> Question, options, feedback per answer.</div></div>
+    <div class="panel media" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+      <div class="col"><div class="frame"><img src="assets/info-enfoque-dual.png" alt="Infographic: the dual approach"></div><div class="lab"><b>Infographic.</b> Dual approach, M2.</div></div>
+      <div class="col"><div class="frame"><img src="assets/video-frame-2.png" alt="Explainer video frame: breaking stereotypes to drive innovation"></div><div class="lab"><b>Explainer video.</b> Powtoon with voiceover, M1.</div></div>
+      <div class="col"><div class="frame fill"><img src="assets/media-inventoras.png" alt="Infographic on women's participation in inventive activity"></div><div class="lab"><b>Data infographic.</b> Women inventors, M1.</div></div>
+      <div class="col"><div class="frame fill"><img src="assets/media-flipcards.png" alt="Flip card: physical and sexual violence"></div><div class="lab"><b>Flip cards.</b> Concept pairs, M1.</div></div>
+      <div class="col"><div class="frame"><img src="assets/media-indicadores.png" alt="Chart example: absolute and relative indicators"></div><div class="lab"><b>Worked data examples.</b> Indicator types, M3.</div></div>
+      <div class="col"><div class="frame"><img src="assets/media-testimonios.png" alt="Qualitative indicator illustrated with testimonials"></div><div class="lab"><b>Qualitative indicators.</b> Testimonials, M3.</div></div>
     </div>
 
-    <!-- Media -->
-    <div class="panel three" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
-      <div class="col"><div class="frame"><img src="assets/rise-home.png" alt="Module 2 home page in Rise 360 with the course hero image and WIPO Academy logo"></div><div class="lab"><b>Module home.</b> Rise 360, Module 2.</div></div>
-      <div class="col"><div class="frame"><img src="assets/info-enfoque-dual.png" alt="Infographic: components of the dual approach, specific actions and mainstreaming"></div><div class="lab"><b>Infographic.</b> Dual approach, Module 2.</div></div>
-      <div class="col"><div class="frame"><img src="assets/video-frame-2.png" alt="Frame from the explainer video Breaking stereotypes to drive innovation"></div><div class="lab"><b>Explainer video.</b> Powtoon with voiceover, Module 1.</div></div>
+    <div class="panel wide-right" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+      <div class="col"><div class="frame top"><img src="assets/rise-template-sr.png" alt="Rise 360 template with Spanish screen-reader labels"></div><div class="lab"><b>Screen-reader template.</b> Spanish interface labels, tested with a screen reader.</div></div>
+      <div class="col"><div class="frame fill"><img src="assets/clickup-kb.png" alt="WIPO Accessibility Guide for Articulate Rise 360 in ClickUp, with sections on typography and colours, imagery, videography and custom layouts"></div><div class="lab"><b>Accessibility guide.</b> WCAG 2.1 AA translated into Rise decisions: typography, colour, imagery, video, layouts.</div></div>
     </div>
 
-    <!-- Accessibility -->
-    <div class="panel three" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
-      <div class="col"><div class="frame top"><img src="assets/access-guide-1.png" alt="WIPO accessibility guide for Articulate Rise 360, first page"></div><div class="lab"><b>Accessibility guide.</b> WCAG 2.1 AA applied to Rise.</div></div>
-      <div class="col"><div class="frame top"><img src="assets/rise-template-sr.png" alt="Rise template page with Spanish screen-reader labels"></div><div class="lab"><b>Screen-reader template.</b> Spanish interface labels, tested.</div></div>
-      <div class="col"><div class="frame top" style="padding:0 6px"><img style="width:auto;height:100%;object-fit:contain" src="assets/alt-text-instructions.png" alt="Alt-text instructions document"></div><div class="lab"><b>Alt-text instructions.</b> Text equivalents for every visual.</div></div>
-    </div>
-
-    <!-- Live sessions -->
     <div class="panel two" id="p5" role="tabpanel" aria-labelledby="t5" hidden>
-      <div class="col"><div class="frame top"><img src="assets/zoom-guide-1.png" alt="Zoom facilitation guide for Module 2, cover page"></div><div class="lab"><b>Facilitator kit.</b> Purpose, timing, materials for the Zoom session.</div></div>
-      <div class="col"><div class="frame top"><img src="assets/zoom-guide-2.png" alt="Facilitation plan with facilitator actions and slide notes side by side"></div><div class="lab"><b>Lesson plan.</b> Facilitator actions beside the slide for each segment.</div></div>
+      <div class="col"><div class="frame"><img src="assets/zoom-guide-1.png" alt="Zoom facilitation guide for Module 2: duration, purpose, content"></div><div class="lab"><b>Facilitator kit.</b> Purpose, timing and materials for each live session.</div></div>
+      <div class="col"><div class="frame"><img src="assets/zoom-guide-2.png" alt="Facilitation plan: facilitator actions beside the slide for each segment"></div><div class="lab"><b>Lesson plan.</b> Facilitator actions beside the suggested slide, segment by segment.</div></div>
     </div>
   </div>
-
-  <footer>
-    <p class="cap" id="cap"></p>
-    <span class="foot">Instructional design · Aida Carlon · 2025–26</span>
-  </footer>
+  <footer><p class="cap" id="cap"></p><span class="foot">Instructional design · Aida Carlon · 2025–26</span></footer>
 </div>
 <script>
 (function(){
   var caps={
-    t0:"<b>Standards first.</b> Writing, editorial and visual guides built before storyboarding, so three modules read as one course.",
-    t1:"<b>Designed backwards.</b> From transfer goals to outcomes, evidence and activities, with Bloom's levels made explicit.",
-    t2:"<b>Storyboard to screen.</b> Each page specifies text, interaction, media, alt text and feedback; the build follows it.",
-    t3:"<b>Media chosen for the concept.</b> Infographics, explainer videos and companion guides, each where it explains best.",
-    t4:"<b>Accessible by design.</b> Requirements informed templates and media, not a final check.",
+    t0:"<b>Blended course for the WIPO Academy.</b> Gender mainstreaming in IP offices, for staff across Latin America and the Caribbean.",
+    t1:"<b>Standards first.</b> Writing, editorial, visual and accessibility guides built before storyboarding, kept in one knowledge base.",
+    t2:"<b>Designed backwards, specified fully.</b> Outcomes to evidence to activities, then storyboards the build follows page by page.",
+    t3:"<b>Media chosen for the concept.</b> Infographics, video, flip cards and worked data, each where it explains best.",
+    t4:"<b>Accessible by design.</b> Requirements informed templates and media from the start, not a final check.",
     t5:"<b>Blended on purpose.</b> Three live sessions extend the self-paced modules through discussion and application."
   };
   var tabs=document.querySelectorAll('[role=tab]'),panels=document.querySelectorAll('[role=tabpanel]'),cap=document.getElementById('cap');
-  function show(id){
-    tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.id===id));});
-    panels.forEach(function(p){p.hidden=(p.getAttribute('aria-labelledby')!==id);});
-    cap.innerHTML=caps[id];
-    try{location.hash=document.getElementById(id).textContent.toLowerCase().replace(/[^a-z]+/g,'-');}catch(e){}
-  }
+  function show(id){tabs.forEach(function(t){t.setAttribute('aria-selected',String(t.id===id));});panels.forEach(function(p){p.hidden=(p.getAttribute('aria-labelledby')!==id);});cap.innerHTML=caps[id];try{location.hash=document.getElementById(id).textContent.toLowerCase().replace(/[^a-z]+/g,'-');}catch(e){}}
   tabs.forEach(function(t){t.addEventListener('click',function(){show(t.id);});});
-  var h=(location.hash||'').replace('#',''),start='t0';
-  tabs.forEach(function(t){if(t.textContent.toLowerCase().replace(/[^a-z]+/g,'-')===h)start=t.id;});
-  show(start);
+  var h=(location.hash||'').replace('#',''),start='t0';tabs.forEach(function(t){if(t.textContent.toLowerCase().replace(/[^a-z]+/g,'-')===h)start=t.id;});show(start);
 })();
 </script>
 </body>
